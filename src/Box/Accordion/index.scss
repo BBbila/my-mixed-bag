@@ -1,0 +1,30 @@
+.accordionMainWrap {
+  width: 180px;
+  height: 100vh;
+  background-color: rgb(218, 238, 231);
+  .itemWrap {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    .item {
+      width: 100%;
+      height: 40px;
+      text-align: center;
+      font-size:28px;
+      line-height: 40px;
+      background-color: rgb(53, 136, 108);
+      color: white;
+    }
+    .itemUl {
+      width: 100%;
+      height: auto;
+      .itemli {
+        width: 100%;
+        height: 28px;
+        font-size: 24px;
+        line-height: 28px;
+      }
+    }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+  }
+}

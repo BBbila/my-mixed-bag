@@ -1,0 +1,39 @@
+.gobangWrap {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  background-color: rgb(245, 239, 228);
+  flex-direction: column;
+  align-items: center;
+  .board {
+    width: auto;
+    height: auto;
+    margin-top: 50px;
+    .boardLine{
+      width: 100%;
+      height: 48px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      .item {
+        width: 46px;
+        height: 46px;
+        font-size: 28px;
+        line-height: 48rpx;
+        padding: 0;
+        margin: 0;
+        color: rgb(245, 246, 247);
+        background-color: rgb(9, 24, 24);
+        border: solid 2px rgb(197, 196, 196);
+      }
+    }
+  }
+  .operation {
+    width: 100%;
+    height: 80px;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
