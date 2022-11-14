@@ -1,0 +1,15 @@
+.btnGroup {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  .down {
+    margin-top: 30px;
+  }
+  .text {
+    color: black;
+    font-weight: bold;
+  }
+  .dangerous {
+    color: red !important;
+  }
+}
