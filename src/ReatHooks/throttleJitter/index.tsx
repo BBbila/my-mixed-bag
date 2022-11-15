@@ -6,6 +6,14 @@ import useThrottle from "../useThrottle";
 interface IThrottleJitterConProps {
   
 }
+
+const BtnMemo = React.memo((props: any) => {
+  const { click } = props
+  return (
+  <button className="down" onClick={click}>节流</button>
+  )
+})
+
 const throttleJitterCon = (props: IThrottleJitterConProps) => {
   const [text, setText] = useState("")
   const [throttleText, setThrottleText] = useState("初始")
@@ -30,21 +38,19 @@ const throttleJitterCon = (props: IThrottleJitterConProps) => {
  }
 
   /** 节流：在一定时间内只能执行一次 */
-  const throttleFunc = useCallback((fn: Function, delay:any) => {
-  const [flag, setFlag] = useState(true)
-    let timer: any = null
-    return function(this:any) { 
-        let context = this
-        if(!flag) return
-        setFlag(false)
-        clearTimeout(timer)
-        fn.apply(context,arguments)
-        timer = setTimeout(function() {
-        setFlag(true)
-        },delay)
+  const throttleFunc = (fn: Function, delay:any) => {
+    let timer: any
+    return useCallback(function(this:any) {
+      if (!timer) {
+        timer = setTimeout(() => {
+          timer = null
+        }, delay)
+        fn.apply(this, arguments)
       }
-    }
-  ,[])
+    },[])
+  }
+
+  
 
 
   /** 点击事件 */
@@ -52,7 +58,7 @@ const throttleJitterCon = (props: IThrottleJitterConProps) => {
     if(type == 'debounce') {
       setText("已处理")
     }else {
-      setThrottleText(`执行`)
+      setThrottleText(`${new Date().getSeconds()}`)
     }
   }
 
@@ -62,12 +68,13 @@ const throttleJitterCon = (props: IThrottleJitterConProps) => {
       <div className="btnGroup">
         <button onClick={debounce(() => {handleClickJitter('debounce')},5000)}>防抖</button>
         <div className={textCls}>{text}</div>
-        <button className="down" onClick={throttleFunc(() => {handleClickJitter('throttle')},5000)}>节流</button>
+        <BtnMemo click={throttleFunc(() =>{handleClickJitter('throttle')},3000)} />
         <div className={textThrottleCls}>{throttleText}</div>
       </div>
     </Fragment>
   );
 }
+
 export default throttleJitterCon;
 
 
