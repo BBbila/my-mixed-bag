@@ -1,5 +1,13 @@
 
 import React from "react"
+import { Manager } from "socket.io-client";
+
+const manager = new Manager("http://localhost:3000", {
+  autoConnect: true
+});
+
+const socket = manager.socket("/");
+
 
 const initIndexArray: any = Array(9).fill([]).map(() => Array(9).fill({value:''}))
 
@@ -15,6 +23,22 @@ class GoBang extends React.Component<any,any> {
      this.state = {
       ...initState
      }
+  }
+
+  componentDidMount(): void {
+    manager.open((err) => {
+      if (err) {
+        // an error has occurred
+      } else {
+        console.log('the connection was successfully established')
+      }
+    });
+    
+    this.sendMessage('hhhhhhhhhhhhhhhhhhhhhhh')
+  }
+
+  sendMessage(message: string) {
+    socket.emit('message', message);
   }
 
   /** 点击下棋 */
@@ -78,20 +102,6 @@ class GoBang extends React.Component<any,any> {
       this.commonWin(newEleObj[item])
     }
 
-
-    // rowList.push(newEleObj[5][5])
-    // rowList.push(newEleObj[0][4], newEleObj[1][0])
-    // rowList.push(newEleObj[0][2], newEleObj[1][1], newEleObj[2][0])
-    // rowList.push(newEleObj[0][3], newEleObj[1][2], newEleObj[2][1], newEleObj[3][0])
-    // rowList.push(newEleObj[0][4], newEleObj[1][3], newEleObj[2][2], newEleObj[3][1], newEleObj[4][0])
-    // rowList.push(newEleObj[0][5], newEleObj[1][4], newEleObj[2][3], newEleObj[3][2], newEleObj[4][1], newEleObj[5][0])
-
-    // rowList.push(newEleObj[1][5], newEleObj[2][4], newEleObj[3][3],newEleObj[4][2],newEleObj[5][1])
-    // rowList.push(newEleObj[2][5], newEleObj[3][4], newEleObj[4][3],newEleObj[5][2])
-    // rowList.push(newEleObj[3][5], newEleObj[4][4], newEleObj[5][3])
-    // rowList.push(newEleObj[4][5], newEleObj[5][4])
-    // rowList.push(newEleObj[5][5])
-    
 
     //判断左斜
     let newBiasEleObj: any = {}

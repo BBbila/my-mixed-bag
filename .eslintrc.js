@@ -7,8 +7,8 @@ module.exports = {
   },
   env: {
   },
-  plugins: ['@typescript-eslint'],
-  rules: {
-    "eqeqeq": 0, // === 关闭
-  },
+  // plugins: ['@typescript-eslint'],
+  // rules: {
+  //   "eqeqeq": 0, // === 关闭
+  // },
 }
